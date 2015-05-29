@@ -36,3 +36,12 @@
        serial)
      (catch SerialPortException e
        (throw (Exception. (str "Sorry, couldn't connect to the port with path " path )))))))
+
+;; Simple testing code
+(comment
+  ;; open serial, you can use tty0tty to test it
+  (def conn (open "/dev/pts/6"))
+  ;; write some info
+  (.writeBytes conn (.getBytes "asdadads"))
+  ;; close connection
+  (close conn))
