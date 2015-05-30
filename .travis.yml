@@ -9,8 +9,6 @@ install:
   - sudo apt-get install -qq socat
 
 script:
-  - which hash
-  - which type
   - lein deps
   - lein trampoline test
 
