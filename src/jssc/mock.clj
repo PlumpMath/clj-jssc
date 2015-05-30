@@ -1,26 +1,24 @@
-(ns jssc.test-helper
-  (:require [clj-jssc.test-helper :refer :all]
-            [clojure.test :refer :all])
+(ns jssc.mock
   (:use [clojure.java.shell :only [sh]]))
 
-;; Since we use socat to test this application, check if it exist first
-(when-not (zero? (:exit (sh "socat" "-h")))
-  (throw (Exception. (str "Please install socat first."))))
+(def pid-list (atom []))
 
 (defn- create-tmpfile
   "Create tmpfile for testing with socat. This function will return tmp file
   absolute path."
   []
   (let [tmp (java.io.File/createTempFile "tty" ".serial")]
-    ;; mark  the temporary file to be delete automatically when JVM exits.
+    ;; mark the temporary file to be delete automatically when JVM exits.
     (.deleteOnExit tmp)
     ;; return absolute path
     (.getAbsolutePath tmp)))
 
-(def pid-list (atom []))
-
 (defn mock-serial
   []
+  ;; Since we use socat to test this application, check if it exist first
+  (when-not (zero? (:exit (sh "socat" "-h")))
+    (throw (Exception. (str "Please install socat first."))))
+  ;; Create virtual serial file
   (let [tty1 (create-tmpfile) tty2 (create-tmpfile)
         socat (format "socat PTY,raw,link=%s PTY,raw,link=%s" tty1 tty2)
         cmd (format "nohup %s < /dev/null &> /dev/null & echo $! " socat)
@@ -37,7 +35,6 @@
     ;; return
     (merge exec {:tty1 tty1 :tty2 tty2 :pid pid})))
 
-
 ;; Before leave JVM, we need to close all socat process we create
 (.addShutdownHook
  (Runtime/getRuntime)
@@ -46,5 +43,5 @@
     ;; FIXME: why this will run twice ?
     (doseq [pid @pid-list]
       (sh "kill" "-SIGTERM" pid)
-      (println (format "kill socat with PID %s\n" pid))
+      ;; (println (format "kill socat with PID %s\n" pid))
       ))))

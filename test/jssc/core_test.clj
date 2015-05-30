@@ -1,7 +1,7 @@
 (ns jssc.core-test
   (:require [clojure.test :refer :all]
             [jssc.core :refer :all])
-  (:use [jssc.test-helper]))
+  (:use [jssc.mock]))
 
 ;;(. (Runtime/getRuntime) exec (into-array ["socat" "-d" "-d" "pty" "pty"]))
 
