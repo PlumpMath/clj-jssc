@@ -39,6 +39,11 @@
 
 ;; Simple testing code
 (comment
+  ;; we can use socat to create virtual serial port
+  ;; open serial and type following command
+  ;;
+  ;;  socat -d -d pty pty
+
   ;; open serial, you can use tty0tty to test it
   (def conn (open "/dev/pts/6"))
   ;; write some info

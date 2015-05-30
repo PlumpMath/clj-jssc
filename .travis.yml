@@ -9,7 +9,7 @@ install:
   - sudo apt-get install -qq socat
 
 script:
-  lein test
+  lein trampoline test
 
 branches:
   only: master
