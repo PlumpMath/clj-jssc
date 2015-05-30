@@ -1,4 +1,4 @@
-(ns clj-jssc.core
+(ns jssc.core
   (:import [jssc
             SerialPortList
             SerialPort

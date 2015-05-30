@@ -1,4 +1,4 @@
-(ns clj-jssc.test-helper
+(ns jssc.test-helper
   (:require [clj-jssc.test-helper :refer :all]
             [clojure.test :refer :all])
   (:use [clojure.java.shell :only [sh]]))
