@@ -13,7 +13,7 @@
   []
   (let [tmp (java.io.File/createTempFile "tty" ".serial")]
     ;; mark  the temporary file to be delete automatically when JVM exits.
-    ;;(.deleteOnExit tmp)
+    (.deleteOnExit tmp)
     ;; return absolute path
     (.getAbsolutePath tmp)))
 
@@ -32,6 +32,8 @@
       (swap! pid-list conj pid)
       ;; error case
       (throw (Exception. (str "socat execute failed, error: " pid))))
+    ;; sleep a while for waith process done
+    (Thread/sleep 2000)
     ;; return
     (merge exec {:tty1 tty1 :tty2 tty2 :pid pid})))
 
@@ -43,6 +45,6 @@
   (fn []
     ;; FIXME: why this will run twice ?
     (doseq [pid @pid-list]
-;;      (sh "kill" "-SIGTERM" pid)
-;;      (println (format "kill socat with PID %s\n" pid))
+      (sh "kill" "-SIGTERM" pid)
+      (println (format "kill socat with PID %s\n" pid))
       ))))

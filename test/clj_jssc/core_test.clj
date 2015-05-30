@@ -19,7 +19,7 @@
 
     (testing "simple write"
       (let [conn (open tty1)]
-;;        (.writeBytes conn (.getBytes "asdadads"))
-;;        (close conn)
+        (.writeBytes conn (.getBytes "asdadads"))
+        (close conn)
         ))
     ))
