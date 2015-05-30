@@ -6,7 +6,7 @@ jdk:
   - oraclejdk7
 
 install:
-  - sudo apt-get install -qq socat
+  - sudo apt-get install -qq socat bash
 
 script:
   lein trampoline test
