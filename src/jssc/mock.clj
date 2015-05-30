@@ -1,7 +1,8 @@
 (ns jssc.mock
   (:use [clojure.java.shell :only [sh]]))
 
-(def pid-list (atom []))
+(def ^:no-doc
+  pid-list (atom []))
 
 (defn- create-tmpfile
   "Create tmpfile for testing with socat. This function will return tmp file
