@@ -4,7 +4,7 @@
   (:use [clojure.java.shell :only [sh]]))
 
 ;; Since we use socat to test this application, check if it exist first
-(when-not (zero? (:exit (sh "type" "socat")))
+(when-not (zero? (:exit (sh "hash" "socat")))
   (throw (Exception. (str "Please install socat first."))))
 
 (defn- create-tmpfile
