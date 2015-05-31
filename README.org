@@ -1,0 +1,37 @@
+#+TITLE: clj-jssc - clojure wrapper for java simple serial connector
+
+# Badge
+[[https://travis-ci.org/coldnew/clj-jssc][https://travis-ci.org/coldnew/clj-jssc.svg?branch=master]]
+
+[[https://github.com/coldnew/clj-jssc][clj-jssc]] is [[https://github.com/scream3r/java-simple-serial-connector][java-simple-serial-connector]] wrapper for Clojure.
+
+* Examples
+
+Following are some examples porting from jssc's example, which can testing under
+REPL.
+
+Add folloing code after you start REPL
+
+#+BEGIN_SRC clojure
+  (use '[jssc.core])
+  (use '[jssc.mock :only [mock-serial]])
+#+END_SRC
+
+** Getting serial ports names
+
+#+BEGIN_SRC clojure
+  (list-ports)
+#+END_SRC
+
+** Writing data to serial port
+
+#+BEGIN_SRC clojure
+
+#+END_SRC
+
+* License
+
+Copyright © 2015 Yen-Chin, Lee
+
+Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.
