@@ -15,6 +15,8 @@
     (.getAbsolutePath tmp)))
 
 (defn mock-serial
+  "Create mocking serial by socat command. This function will create two virtual
+  serial port for testing serial communication."
   []
   ;; Since we use socat to test this application, check if it exist first
   (when-not (zero? (:exit (sh "socat" "-h")))
