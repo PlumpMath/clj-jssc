@@ -14,6 +14,7 @@
     ;; return absolute path
     (.getAbsolutePath tmp)))
 
+;; {:pid "72928", :tty2 "/var/folders/ds/m99n8q4x4w9f84cj0r8ncc_40000gn/T/tty7055782053216333518.serial", :tty1 "/var/folders/ds/m99n8q4x4w9f84cj0r8ncc_40000gn/T/tty7669629127531817102.serial", :exit 0, :out "72928\n", :err ""}
 (defn mock-serial
   "Create mocking serial by socat command. This function will create two virtual
   serial port for testing serial communication."

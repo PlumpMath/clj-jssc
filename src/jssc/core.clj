@@ -4,6 +4,10 @@
             SerialPort
             SerialPortException]))
 
+(defrecord Port [path raw-port out-stream in-stream])
+
+;; reference: http://java-simple-serial-connector.googlecode.com/svn/trunk/additional_content/javadoc/0.8/index.html
+
 (defn port-ids
   "Returns a seq representing all port identifiers visible to the system"
   []
@@ -11,11 +15,9 @@
    (SerialPortList/getPortNames)))
 
 (defn list-ports
-  "Print out the available ports with an index number for future reference
-  with (port-at <i>)."
+  "Print out the available ports. The names are printed exactly as they should be passed to open."
   []
   (apply println (port-ids)))
-
 
 (defn close
   "Close an open port."
@@ -36,6 +38,31 @@
        serial)
      (catch SerialPortException e
        (throw (Exception. (str "Sorry, couldn't connect to the port with path " path )))))))
+
+(defn write-string
+  [port str]
+  (.writeString port str))
+
+(defn write-int
+  [port number]
+  (.writeInt port number))
+
+(defn read-bytes
+  [port count]
+  (.readBytes port count))
+
+(defn read-string
+  ([port] (.readString port))
+  ([port count] (.readString port count)))
+
+(defn read-hex-string
+  ([port count] (.readHexString port count))
+  ([port count separator] (.readHexString port count separator)))
+
+(defn read-bytes
+  [port]
+  (.readBytes port))
+
 
 ;; Simple testing code
 (comment

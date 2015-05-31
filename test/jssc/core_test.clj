@@ -3,23 +3,20 @@
             [jssc.core :refer :all])
   (:use [jssc.mock]))
 
-;;(. (Runtime/getRuntime) exec (into-array ["socat" "-d" "-d" "pty" "pty"]))
-
-;; (deftest a-test
-;;   (let [s (mock-serial)]
-;;     (println (str s))
-;;     (testing "FIXME, I fail."
-;;       (is (= 0 1)))
-;;     ))
-
 (deftest write-test
   (let [serial (mock-serial)
-        tty1 (:tty1 serial)
-        tty2 (:tty2 serial)]
+        tty1 (open (:tty1 serial))
+        tty2 (open (:tty2 serial))]
 
-    (testing "simple write"
-      (let [conn (open tty1)]
-        (.writeBytes conn (.getBytes "asdadads"))
-        (close conn)
-        ))
-    ))
+    (testing "read/write string test"
+      (let [pattern "This is testing read/write string"]
+        ;; open another thread for listen tty2
+        (future
+          (Thread/sleep 10000)
+          (is (= pattern (read-string tty2))))
+        ;; write something
+        (write-string tty1 pattern)))
+
+    ;; remember to close opened serial port
+    (close tty1)
+    (close tty2)))
