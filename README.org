@@ -3,14 +3,15 @@
 # Badge
 [[https://travis-ci.org/coldnew/clj-jssc][https://travis-ci.org/coldnew/clj-jssc.svg?branch=master]]
 
-[[https://github.com/coldnew/clj-jssc][clj-jssc]] is [[https://github.com/scream3r/java-simple-serial-connector][java-simple-serial-connector]] wrapper for Clojure.
+[[https://github.com/coldnew/clj-jssc][clj-jssc]] is [[https://github.com/scream3r/java-simple-serial-connector][java-simple-serial-connector]] wrapper for Clojure. You can view code
+document online [[http://coldnew.github.io/clj-jssc/][here]].
 
 * Examples
 
 Following are some examples porting from jssc's example, which can testing under
 REPL.
 
-Add folloing code after you start REPL
+Add following code after you start REPL
 
 #+BEGIN_SRC clojure
   (use '[jssc.core])
